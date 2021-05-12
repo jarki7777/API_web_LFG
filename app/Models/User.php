@@ -21,8 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'email',
         'name',
-        'password',
-        'username'
+        'password'
     ];
 
     public function Message()
