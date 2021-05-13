@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\AdminSeeder;
 use Database\Seeders\GameSeeder;
+use Database\Seeders\RoleSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,5 +25,8 @@ class DatabaseSeeder extends Seeder
 
         //Games Seed
         $this->call(GameSeeder::class);
+
+        //Roles Seed
+        $this->call(RoleSeeder::class);
     }
 }
