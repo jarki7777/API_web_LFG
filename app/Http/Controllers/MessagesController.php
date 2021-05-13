@@ -12,9 +12,12 @@ class MessagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $partyId = $request->party_id;
+        $messages = Message::all()->where('party_id', $partyId);
+
+        return response()->json([$messages], 200);
     }
 
     /**

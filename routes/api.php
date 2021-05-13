@@ -32,4 +32,5 @@ Route::group([
     Route::post('/{party_id}', 'App\Http\Controllers\MessagesController@store');
     Route::patch('/{party_id}', 'App\Http\Controllers\MessagesController@update');
     Route::delete('/{party_id}', 'App\Http\Controllers\MessagesController@destroy');
+    Route::get('/{party_id}', 'App\Http\Controllers\MessagesController@index');
 });
