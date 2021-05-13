@@ -24,3 +24,13 @@ Route::group([
         Route::get('logout', 'App\Http\Controllers\AuthController@logout');
     });
 });
+
+Route::group([
+    'prefix' => 'msg',
+    'middleware' => 'auth:api'
+], function () {
+    Route::post('/{party_id}', 'App\Http\Controllers\MessagesController@store');
+    Route::patch('/{party_id}', 'App\Http\Controllers\MessagesController@update');
+    Route::delete('/{party_id}', 'App\Http\Controllers\MessagesController@destroy');
+    Route::get('/{party_id}', 'App\Http\Controllers\MessagesController@index');
+});
