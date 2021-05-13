@@ -39,9 +39,10 @@ class PartyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show(Request $request, $name)
     {
-        $party = Party::where('name', 'like',  $name)->get();
+        $idGame =  $request->game_id;
+        $party = Party::where('game_id',  $idGame)->first();
         return $party;
     }
 }
