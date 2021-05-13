@@ -29,6 +29,7 @@ Route::group([
     });
 });
 
+
 //Routes Party
 Route::get('/party', [PartyController::class, 'index']);
 Route::post('/party', [PartyController::class, 'store']);
@@ -40,3 +41,13 @@ Route::middleware('auth:api')->post('/partyuser/{party_id}', [PartyUserControlle
 
 //Routes User
 Route::middleware('auth:api')->put('/user/profile/{id}', [UserController::class, 'update']);
+
+Route::group([
+    'prefix' => 'msg',
+    'middleware' => 'auth:api'
+], function () {
+    Route::post('/{party_id}', 'App\Http\Controllers\MessagesController@store');
+    Route::patch('/{party_id}', 'App\Http\Controllers\MessagesController@update');
+    Route::delete('/{party_id}', 'App\Http\Controllers\MessagesController@destroy');
+    Route::get('/{party_id}', 'App\Http\Controllers\MessagesController@index');
+});
