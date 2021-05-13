@@ -41,17 +41,6 @@ class MessagesController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -60,7 +49,17 @@ class MessagesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $userId = $request->user()->id;
+
         $message = Message::findOrFail($id);
+
+        $update = Message::where('user_id', $userId)->where('id', $id)->first();
+
+        if (!$update) {
+
+            return response()->json(["Couldn't update"], 400);
+            
+        }
 
         if ($request->has('message')) {
             $message->message = $request->message;
@@ -68,7 +67,7 @@ class MessagesController extends Controller
 
         $message->save();
 
-        return response()->json(['data' => $message], 202);
+        return response()->json(['data' => $message], 205);
     }
 
     /**
@@ -77,8 +76,18 @@ class MessagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $userId = $request->user()->id;
+
+        $delete = Message::where('user_id', $userId)->where('id', $id)->delete();
+
+        if (!$delete) {
+            
+            return response()->json(["Couldn't delete"], 400);
+            
+        } 
+
+        return response()->json(['Deleted successfully'], 200);
     }
 }
