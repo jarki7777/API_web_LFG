@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\PartyController;
+use App\Http\Controllers\PartyUserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +27,11 @@ Route::group([
         Route::get('logout', 'App\Http\Controllers\AuthController@logout');
     });
 });
+
+Route::get('/party', [PartyController::class, 'index']);
+Route::post('/party', [PartyController::class, 'store']);
+Route::get('/party/{name}', [PartyController::class, 'show']);
+
+
+Route::middleware('auth:api')->delete('/partyuser/{party_id}', [PartyUserController::class, 'destroy']);
+Route::middleware('auth:api')->post('/partyuser/{party_id}', [PartyUserController::class, 'store']);
