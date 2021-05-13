@@ -32,12 +32,12 @@ class MessagesController extends Controller
         $message = [
             'message' => $message,
             'party_id' => $partyId,
-            'user_id' => $userId];
+            'user_id' => $userId
+        ];
 
         Message::create($message);
 
-        return $message;
-        response()->json(['message' => 'Message sent']);
+        return response()->json(['data' => $message], 201);
     }
 
     /**
@@ -60,7 +60,15 @@ class MessagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $message = Message::findOrFail($id);
+
+        if ($request->has('message')) {
+            $message->message = $request->message;
+        }
+
+        $message->save();
+
+        return response()->json(['data' => $message], 202);
     }
 
     /**

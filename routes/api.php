@@ -30,4 +30,5 @@ Route::group([
     'middleware' => 'auth:api'
 ], function () {
     Route::post('/{party_id}', 'App\Http\Controllers\MessagesController@store');
+    Route::patch('/{party_id}', 'App\Http\Controllers\MessagesController@update');
 });
