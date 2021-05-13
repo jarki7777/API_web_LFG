@@ -17,8 +17,7 @@ class CreateMessagesTable extends Migration
             $table->bigIncrements('id');
             $table->string('message');
             $table->foreignId('party_id')->constrained('parties');
-            $table->string('user_id');
-            $table->foreign('user_id')->references('email')->on('users');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }
