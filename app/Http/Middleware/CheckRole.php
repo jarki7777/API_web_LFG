@@ -14,7 +14,7 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
         $userRole = $request->user()->role()->first();
         if ($userRole) {

@@ -51,3 +51,14 @@ Route::group([
     Route::delete('/{party_id}', 'App\Http\Controllers\MessagesController@destroy');
     Route::get('/{party_id}', 'App\Http\Controllers\MessagesController@index');
 });
+
+Route::group(
+    [
+        'prefix' => 'game',
+        'middleware' => ['auth:api', 'scope:admin']
+    ],
+    function () {
+        Route::get('/', 'App\Http\Controllers\GamesController@index');
+        Route::post('/', 'App\Http\Controllers\GamesController@store');
+    }
+);
