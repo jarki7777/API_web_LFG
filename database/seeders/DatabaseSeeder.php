@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\AdminSeeder;
 use Database\Seeders\GameSeeder;
 use Database\Seeders\RoleSeeder;
+use Database\Seeders\PartySeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,5 +30,8 @@ class DatabaseSeeder extends Seeder
 
         //Roles Seed
         $this->call(RoleSeeder::class);
+
+        //Parties Seed
+        $this->call(PartySeeder::class);
     }
 }
