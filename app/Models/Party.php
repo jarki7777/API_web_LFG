@@ -13,17 +13,17 @@ class Party extends Model
     use HasFactory;
     protected $fillable = ['name', 'game_id'];
 
-    public function Game()
+    public function game()
     {
         return $this->hasMany(Game::class, 'game_id');
     }
 
-    public function Message()
+    public function message()
     {
         return $this->belongsTo(Message::class, 'party_id');
     }
 
-    public function User()
+    public function user()
     {
         return $this->belongsToMany(User::class, 'party_users');
     }

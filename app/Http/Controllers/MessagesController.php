@@ -15,7 +15,10 @@ class MessagesController extends Controller
     public function index(Request $request)
     {
         $partyId = $request->party_id;
-        $messages = Message::all()->where('party_id', $partyId);
+        /* $messages = Message::where('party_id', $partyId)->first()->party; */
+        /* $messages = Message::select('messages.*', 'parties.name')->where('party_id', $partyId)->first(); */
+        $messages = Message::select('messages.*', 'parties.name as party_name', 'users.email as user_email', 'users.name as user_name')->where('party_id', $partyId)->join('parties', 'messages.party_id', 'parties.id')->join('users', 'messages.user_id', 'users.id')->get();
+        /* dd(Message::find(1)->party); */
 
         return response()->json([$messages], 200);
     }
@@ -61,7 +64,6 @@ class MessagesController extends Controller
         if (!$update) {
 
             return response()->json(["Couldn't update"], 400);
-            
         }
 
         if ($request->has('message')) {
@@ -86,10 +88,9 @@ class MessagesController extends Controller
         $delete = Message::where('user_id', $userId)->where('id', $id)->delete();
 
         if (!$delete) {
-            
+
             return response()->json(["Couldn't delete"], 400);
-            
-        } 
+        }
 
         return response()->json(['Deleted successfully'], 200);
     }

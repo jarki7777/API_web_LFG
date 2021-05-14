@@ -12,12 +12,12 @@ class Message extends Model
     use HasFactory;
     protected $fillable = ['message', 'party_id', 'user_id'];
 
-    public function Party()
+    public function party()
     {
-        return $this->hasMany(Party::class, 'party_id');
+        return $this->hasMany(Party::class, 'id');
     }
 
-    public function User()
+    public function user()
     {
         return $this->hasMany(User::class, 'user_id');
     }

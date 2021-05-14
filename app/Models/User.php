@@ -25,18 +25,18 @@ class User extends Authenticatable
         'password',
         'role'
     ];
-    
+
     public function role()
     {
         return $this->hasOne(Role::class);
     }
 
-    public function Message()
+    public function message()
     {
-        return $this->belongsTo(Message::class, 'user_id');
+        return $this->belongsTo(Message::class, 'id', 'user_id');
     }
 
-    public function Party()
+    public function party()
     {
         return $this->belongsToMany(Party::class, 'party_users');
     }

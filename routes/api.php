@@ -48,7 +48,16 @@ Route::group(
         Route::get('/', [PartyController::class, 'index']);
         Route::post('/', [PartyController::class, 'store']);
         Route::get('/{game_id}', [PartyController::class, 'show']);
-        Route::delete('/party/{id}', [PartyController::class, 'destroy']);
+
+
+        Route::group(
+            [
+                'middleware' => 'scope:admin'
+            ],
+            function () {
+                Route::delete('/{id}', [PartyController::class, 'destroy']);
+            }
+        );
     }
 );
 
@@ -90,15 +99,17 @@ Route::group(
     function () {
         Route::get('/', [GamesController::class, 'index']);
         Route::get('/{id}', [GamesController::class, 'show']);
-    },
-    Route::group(
-        [
-            'middleware' => ['scope:admin']
-        ],
-        function () {
-            Route::post('/', [GamesController::class, 'store']);
-            Route::patch('/{id}', [GamesController::class, 'update']);
-            Route::delete('/{id}', [GamesController::class, 'destroy']);
-        }
-    )
+
+        Route::group(
+            [
+                'middleware' => ['scope:admin']
+            ],
+            function () {
+                Route::post('/', [GamesController::class, 'store']);
+                Route::patch('/{id}', [GamesController::class, 'update']);
+                Route::delete('/{id}', [GamesController::class, 'destroy']);
+            }
+        );
+    }
+
 );
