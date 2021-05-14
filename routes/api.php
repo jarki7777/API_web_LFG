@@ -46,9 +46,9 @@ Route::group(
         Route::get('/', [PartyController::class, 'index']);
         Route::post('/', [PartyController::class, 'store']);
         Route::get('/{game_id}', [PartyController::class, 'show']);
+        Route::delete('/party/{id}', [PartyController::class, 'destroy']);        
     }
 );
-
 
 //Routes Party_User
 Route::group(
