@@ -34,6 +34,7 @@ Route::group([
 Route::get('/party', [PartyController::class, 'index']);
 Route::post('/party', [PartyController::class, 'store']);
 Route::get('/party/{game_id}', [PartyController::class, 'show']);
+Route::middleware('auth:api')->delete('/party/{id}', [PartyController::class, 'destroy']);
 
 //Routes Party_User
 Route::middleware('auth:api')->delete('/partyuser/{party_id}', [PartyUserController::class, 'destroy']);
