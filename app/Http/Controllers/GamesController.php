@@ -41,7 +41,9 @@ class GamesController extends Controller
      */
     public function show($id)
     {
-        //
+        $game = Game::find($id);
+
+        return response()->json(['data' => $game], 200);
     }
 
     /**
@@ -53,7 +55,19 @@ class GamesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $game = Game::findOrFail($id);
+
+        if ($request->has('name')) {
+            $game->name = $request->name;
+        }
+
+        if ($request->has('genre')) {
+            $game->genre = $request->genre;
+        }
+
+        $game->save();
+
+        return response()->json(['data' => $game], 202);
     }
 
     /**
