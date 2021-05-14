@@ -18,42 +18,69 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group([
-    'prefix' => 'auth'
-], function () {
-    Route::post('login', 'App\Http\Controllers\AuthController@login');
-    Route::post('signup', 'App\Http\Controllers\AuthController@signUp');
-    Route::group([
-        'middleware' => 'auth:api'
-    ], function () {
-        Route::get('logout', 'App\Http\Controllers\AuthController@logout');
-    });
-});
+Route::group(
+    [
+        'prefix' => 'auth'
+    ],
+    function () {
+        Route::post('login', 'App\Http\Controllers\AuthController@login');
+        Route::post('signup', 'App\Http\Controllers\AuthController@signUp');
+        Route::group(
+            [
+                'middleware' => 'auth:api'
+            ],
+            function () {
+                Route::get('logout', 'App\Http\Controllers\AuthController@logout');
+            }
+        );
+    }
+);
 
 
 //Routes Party
-Route::get('/party', [PartyController::class, 'index']);
-Route::post('/party', [PartyController::class, 'store']);
-Route::get('/party/{game_id}', [PartyController::class, 'show']);
-Route::middleware('auth:api')->delete('/party/{id}', [PartyController::class, 'destroy']);
+Route::group(
+    [
+        'prefix' => 'party',
+        'middleware' => 'auth:api'
+    ],
+    function () {
+        Route::get('/', [PartyController::class, 'index']);
+        Route::post('/', [PartyController::class, 'store']);
+        Route::get('/{game_id}', [PartyController::class, 'show']);
+        Route::delete('/party/{id}', [PartyController::class, 'destroy']);        
+    }
+);
 
 //Routes Party_User
-Route::middleware('auth:api')->delete('/partyuser/{party_id}', [PartyUserController::class, 'destroy']);
-Route::middleware('auth:api')->post('/partyuser/{party_id}', [PartyUserController::class, 'store']);
+Route::group(
+    [
+        'prefix' => 'partyuser',
+        'middleware' => 'auth:api'
+    ],
+    function () {
+        Route::delete('/{party_id}', [PartyUserController::class, 'destroy']);
+        Route::post('/{party_id}', [PartyUserController::class, 'store']);
+    }
+);
 
 //Routes User
 Route::middleware('auth:api')->put('/user/profile/{id}', [UserController::class, 'update']);
 
-Route::group([
-    'prefix' => 'msg',
-    'middleware' => 'auth:api'
-], function () {
-    Route::post('/{party_id}', 'App\Http\Controllers\MessagesController@store');
-    Route::patch('/{party_id}', 'App\Http\Controllers\MessagesController@update');
-    Route::delete('/{party_id}', 'App\Http\Controllers\MessagesController@destroy');
-    Route::get('/{party_id}', 'App\Http\Controllers\MessagesController@index');
-});
+//Routes Messages
+Route::group(
+    [
+        'prefix' => 'msg',
+        'middleware' => 'auth:api'
+    ],
+    function () {
+        Route::post('/{party_id}', 'App\Http\Controllers\MessagesController@store');
+        Route::patch('/{party_id}', 'App\Http\Controllers\MessagesController@update');
+        Route::delete('/{party_id}', 'App\Http\Controllers\MessagesController@destroy');
+        Route::get('/{party_id}', 'App\Http\Controllers\MessagesController@index');
+    }
+);
 
+//Routes Games
 Route::group(
     [
         'prefix' => 'game',
