@@ -62,5 +62,6 @@ Route::group(
         Route::post('/', 'App\Http\Controllers\GamesController@store');
         Route::get('/{id}', 'App\Http\Controllers\GamesController@show');
         Route::patch('/{id}', 'App\Http\Controllers\GamesController@update');
+        Route::delete('/{id}', 'App\Http\Controllers\GamesController@destroy');
     }
 );

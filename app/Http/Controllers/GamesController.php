@@ -78,6 +78,9 @@ class GamesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $game = Game::findOrFail($id);
+        $game->delete();
+
+        return response()->json(['data' => $game], 202);
     }
 }
