@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GamesController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\PartyUserController;
 use App\Http\Controllers\UserController;
@@ -59,10 +60,10 @@ Route::group(
         'middleware' => ['auth:api', 'scope:admin']
     ],
     function () {
-        Route::get('/', 'App\Http\Controllers\GamesController@index');
-        Route::post('/', 'App\Http\Controllers\GamesController@store');
-        Route::get('/{id}', 'App\Http\Controllers\GamesController@show');
-        Route::patch('/{id}', 'App\Http\Controllers\GamesController@update');
-        Route::delete('/{id}', 'App\Http\Controllers\GamesController@destroy');
+        Route::get('/', [GamesController::class, 'index']);
+        Route::post('/', [GamesController::class, 'store']);
+        Route::get('/{id}', [GamesController::class, 'show']);
+        Route::patch('/{id}', [GamesController::class, 'update']);
+        Route::delete('/{id}', [GamesController::class, 'destroy']);
     }
 );
