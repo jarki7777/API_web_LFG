@@ -17,6 +17,7 @@ class CreatePartyUsersTable extends Migration
             $table->bigIncrements('id');
             $table->foreignId('party_id')->constrained('parties');
             $table->foreignId('user_id')->constrained('users');
+            $table->unique(['party_id', 'user_id']);
             $table->timestamps();
         });
     }
