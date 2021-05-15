@@ -16,45 +16,66 @@ class GameSeeder extends Seeder
     {
         DB::table('games')->insert([
             'name' => 'Valorant',
-            'genre' => 'Shooter'
+            'genre' => 'Shooter',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         DB::table('games')->insert([
             'name' => 'F1-2021',
-            'genre' => 'Sport'
+            'genre' => 'Sport',
+            'created_at' => now(),
+            'updated_at' => now()
+
         ]);
 
         DB::table('games')->insert([
             'name' => 'Residen Evil Village',
-            'genre' => 'Action'
+            'genre' => 'Action',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         DB::table('games')->insert([
             'name' => 'Dragon Ball Z Kakarot',
-            'genre' => 'Action'
+            'genre' => 'Action',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         DB::table('games')->insert([
             'name' => 'Mortal Kombat 11',
-            'genre' => 'Arcade'
+            'genre' => 'Arcade',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         DB::table('games')->insert([
             'name' => 'League of Legends',
-            'genre' => 'Battle Arena'
+            'genre' => 'Battle Arena',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         DB::table('games')->insert([
             'name' => 'Fifa 21',
-            'genre' => 'Sport'
+            'genre' => 'Sport',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         DB::table('games')->insert([
             'name' => 'Phasmophobia',
-            'genre' => 'Terror'
+            'genre' => 'Terror',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         DB::table('games')->insert([
             'name' => 'NBA 2k21',
-            'genre' => 'Sport'
+            'genre' => 'Sport',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         DB::table('games')->insert([
             'name' => 'Warzone',
-            'genre' => 'Shooter'
+            'genre' => 'Shooter',
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
     }
 }
