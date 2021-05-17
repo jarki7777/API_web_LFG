@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckRole
+class checkBan
 {
     /**
      * Handle an incoming request.
@@ -14,16 +14,15 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
-        $userRole = $request->user()->role()->first();
-        if ($userRole) {
-            $request->request->add([
-                'scope' => $userRole->role
-            ]);
-        }
-        dd($request);
+        $ban = $request->user()->is_banned;
 
+        if ((boolean) $ban) {
+
+            return response()->json(['message' => 'You are currently banned']);
+        }
+        
         return $next($request);
     }
 }
