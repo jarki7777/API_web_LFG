@@ -12,6 +12,7 @@ class Party extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'game_id'];
+    protected $hidden = ['created_at', 'updated_at'];
 
     public function game()
     {

@@ -9,4 +9,5 @@ class PartyUser extends Model
 {
     use HasFactory;
     protected $fillable = ['user_id', 'party_id'];
+    protected $hidden = ['created_at', 'updated_at'];
 }

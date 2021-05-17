@@ -11,6 +11,7 @@ class Message extends Model
 {
     use HasFactory;
     protected $fillable = ['message', 'party_id', 'user_id'];
+    protected $hidden = ['created_at', 'updated_at'];
 
     public function party()
     {
