@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GamesController;
 use App\Http\Controllers\MessagesController;
@@ -42,7 +43,7 @@ Route::group(
 Route::group(
     [
         'prefix' => 'party',
-        'middleware' => 'auth:api'
+        'middleware' => ['auth:api', 'ban']
     ],
     function () {
         Route::get('/', [PartyController::class, 'index']);
@@ -65,7 +66,7 @@ Route::group(
 Route::group(
     [
         'prefix' => 'partyuser',
-        'middleware' => 'auth:api'
+        'middleware' => ['auth:api', 'ban']
     ],
     function () {
         Route::delete('/{party_id}', [PartyUserController::class, 'destroy']);
@@ -80,7 +81,7 @@ Route::middleware('auth:api')->put('/user/profile/{id}', [UserController::class,
 Route::group(
     [
         'prefix' => 'msg',
-        'middleware' => 'auth:api'
+        'middleware' => ['auth:api', 'ban']
     ],
     function () {
         Route::post('/{party_id}', [MessagesController::class, 'store']);
@@ -94,7 +95,7 @@ Route::group(
 Route::group(
     [
         'prefix' => 'game',
-        'middleware' => ['auth:api']
+        'middleware' => ['auth:api', 'ban']
     ],
     function () {
         Route::get('/', [GamesController::class, 'index']);
@@ -102,7 +103,7 @@ Route::group(
 
         Route::group(
             [
-                'middleware' => ['scope:admin']
+                'middleware' => 'scope:admin'
             ],
             function () {
                 Route::post('/', [GamesController::class, 'store']);
@@ -112,4 +113,17 @@ Route::group(
         );
     }
 
+);
+//Admin Routes
+Route::group(
+    [
+        'prefix' => 'admin',
+        'middleware' => ['auth:api']
+    ],
+    function () {
+        Route::get('/users', [AdminController::class, 'index']);
+        Route::get('/banned', [AdminController::class, 'isBanned']);
+        Route::patch('/banUsers/{user_id}', [AdminController::class, 'banUsers']);
+        Route::patch('/changeRole/{user_id}', [AdminController::class, 'update']);
+    }
 );

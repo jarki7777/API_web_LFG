@@ -31,6 +31,6 @@ class UserController extends Controller
         }
 
         $user->save();
-        return response()->json(['Datos Actualizados con exito']);
+        return response()->json(['Datos Actualizados con exito'], 200);
     }
 }

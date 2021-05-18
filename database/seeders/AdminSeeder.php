@@ -24,5 +24,16 @@ class AdminSeeder extends Seeder
             'user_id' => 1,
             'role' => 'admin'
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'User',
+            'email' => 'user@user.com',
+            'password' => bcrypt('123456')
+        ]);
+
+        DB::table('roles')->insert([
+            'user_id' => 2,
+            'role' => 'basic'
+        ]);
     }
 }
