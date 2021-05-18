@@ -16,7 +16,7 @@ class PartyController extends Controller
     public function index()
     {
         $party = Party::select('parties.*', 'games.name as game_name')->join('games', 'parties.game_id', 'games.id')->get();
-        return $party;
+        return response()->json(['parties' => $party], 202);
     }
 
     /**
@@ -31,7 +31,7 @@ class PartyController extends Controller
         $party = Party::create($data);
 
         return $party;
-        response()->json([$data => $party], 200);
+        response()->json(['new party' => $party], 201);
     }
 
     /**
@@ -44,7 +44,7 @@ class PartyController extends Controller
     {
         $idGame =  $request->game_id;
         $party = Party::where('game_id',  $idGame)->first();
-        return $party;
+        return response()->json(['party' => $party], 202);;
     }
 
     public function destroy(Request $request)
@@ -53,11 +53,10 @@ class PartyController extends Controller
         PartyUser::where('party_id', $id)->delete();
         $result = Party::destroy($id);
 
-
         if (!$result) {
-            return response()->json(['La Party no ha sido encontrada'], 400);
+            return response()->json(['Party not found'], 400);
         }
 
-        return response()->json(['Party borrada con exito'], 200);
+        return response()->json(['Delete Succesfuly'], 200);
     }
 }

@@ -16,7 +16,7 @@ class MessagesController extends Controller
     {
         $partyId = $request->party_id;
         $messages = Message::select('messages.*', 'parties.name as party_name', 'users.email as user_email', 'users.name as user_name')->where('party_id', $partyId)->join('parties', 'messages.party_id', 'parties.id')->join('users', 'messages.user_id', 'users.id')->get();
-        return response()->json([$messages], 200);
+        return response()->json(['messages' => $messages], 202);
     }
 
     /**
@@ -39,7 +39,7 @@ class MessagesController extends Controller
 
         Message::create($message);
 
-        return response()->json(['data' => $message], 201);
+        return response()->json(['new message' => $message], 201);
     }
 
     /**
@@ -59,7 +59,7 @@ class MessagesController extends Controller
 
         if (!$update) {
 
-            return response()->json(["Couldn't update"], 400);
+            return response()->json(['message' => "Couldn't update"], 400);
         }
 
         if ($request->has('message')) {
@@ -68,7 +68,7 @@ class MessagesController extends Controller
 
         $message->save();
 
-        return response()->json(['data' => $message], 205);
+        return response()->json(['message' => 'Update Succefuly'], 205);
     }
 
     /**

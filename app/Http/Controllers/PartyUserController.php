@@ -23,15 +23,13 @@ class PartyUserController extends Controller
             $data = ['user_id' => $idUser, 'party_id' => $idParty];
             PartyUser::create($data);
 
-            return response()->json(['Te has unido al grupo'], 202);
-
+            return response()->json(['message' => 'You have joined'], 202);
         } catch (QueryException $error) {
 
-            return response()->json(['Ya estás en este grupo'], 422);
-
+            return response()->json(['message' => 'You have already joined'], 422);
         } catch (\Exception $error) {
 
-            return response()->json(['Ha ocurrido un error'], 503);
+            return response()->json(['message' => 'An error has occurred'], 503);
         }
     }
     /**
@@ -46,6 +44,6 @@ class PartyUserController extends Controller
         $idParty = $request->party_id;
         $id = PartyUser::where('user_id', $idUser)->where('party_id', $idParty)->first()->delete();
 
-        return response()->json(['Usuario Dado de baja de la sala'], 200);
+        return response()->json(['message' => 'You have given up the party'], 200);
     }
 }

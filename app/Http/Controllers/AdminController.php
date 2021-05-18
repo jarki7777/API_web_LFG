@@ -17,13 +17,13 @@ class AdminController extends Controller
     public function index()
     {
         $user = User::all();
-        return response()->json([$user], 200);
+        return response()->json(['users' => $user], 200);
     }
 
     public function isBanned()
     {
         $banUser = User::select('users.*')->where('is_banned', 1)->get();
-        return response()->json([$banUser], 200);
+        return response()->json(['users banned' => $banUser], 200);
     }
 
     /**
@@ -41,9 +41,9 @@ class AdminController extends Controller
         $result = DB::update('update roles set role = ? where user_id = ?', [$role, $user->id]);
 
         if (!$result) {
-            return response()->json(["Couldn't update"], 400);
+            return response()->json(['message' => "Couldn't update"], 400);
         } else {
-            return response()->json(['Update Succefuly'], 205);
+            return response()->json(['message' => "Update Succefuly"], 205);
         }
     }
 
@@ -54,6 +54,6 @@ class AdminController extends Controller
         $user->is_banned = $userIsBanned;
         $user->save();
 
-        return response()->json([$user], 200);
+        return response()->json(['message' => "User Banned"], 205);
     }
 }

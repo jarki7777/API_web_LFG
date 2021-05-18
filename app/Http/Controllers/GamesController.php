@@ -15,7 +15,7 @@ class GamesController extends Controller
     public function index()
     {
         $games = Game::all();
-        return $games;
+        return response()->json(['games' => $games], 201);
     }
 
     /**
@@ -30,7 +30,7 @@ class GamesController extends Controller
 
         $game = Game::create($data);
 
-        return response()->json(['data' => $game], 201);
+        return response()->json(['new game' => $game], 201);
     }
 
     /**
@@ -43,7 +43,7 @@ class GamesController extends Controller
     {
         $game = Game::find($id);
 
-        return response()->json(['data' => $game], 200);
+        return response()->json(['game' => $game], 200);
     }
 
     /**
@@ -67,7 +67,7 @@ class GamesController extends Controller
 
         $game->save();
 
-        return response()->json(['data' => $game], 202);
+        return response()->json(['message' => "Update Succefuly"], 205);
     }
 
     /**
@@ -81,6 +81,6 @@ class GamesController extends Controller
         $game = Game::findOrFail($id);
         $game->delete();
 
-        return response()->json(['data' => $game], 202);
+        return response()->json(['message' => "Delete Succefuly"], 202);
     }
 }
