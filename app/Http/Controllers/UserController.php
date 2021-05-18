@@ -16,7 +16,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        $userId = $request->user()->id;
+        $user = User::findOrFail($id)->where('id', $userId)->first();
+
+        if ($userId !== (int)$request->id) {
+            return response()->json(['Can only update your own data'], 400);
+        }
 
         if ($request->has('name')) {
             $user->name = $request->name;
@@ -31,6 +36,6 @@ class UserController extends Controller
         }
 
         $user->save();
-        return response()->json(['message' => 'Update Succesfuly'], 200);
+        return response()->json(['Updated successfuly'], 201);
     }
 }
