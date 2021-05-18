@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -34,18 +35,25 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $user = User::findOrFail($id);
-        dd($user);
+        $role = $request->role;
+
+        $result = DB::update('update roles set role = ? where user_id = ?', [$role, $user->id]);
+
+        if (!$result) {
+            return response()->json(["Couldn't update"], 400);
+        } else {
+            return response()->json(['Update Succefuly'], 205);
+        }
     }
 
     public function banUsers(Request $request, $id)
     {
-        $userBanned = $request->user()->is_banned;
+        $userIsBanned = $request->is_banned;
         $user = User::findOrFail($id);
-        $user->is_banned = $userBanned;
+        $user->is_banned = $userIsBanned;
         $user->save();
 
-        return response()->json(['Datos Actualizados con exito'], 200);
+        return response()->json([$user], 200);
     }
 }

@@ -123,7 +123,7 @@ Route::group(
     function () {
         Route::get('/users', [AdminController::class, 'index']);
         Route::get('/banned', [AdminController::class, 'isBanned']);
-        Route::patch('/banUsers/{id}', [AdminController::class, 'banUsers']);
+        Route::patch('/banUsers/{user_id}', [AdminController::class, 'banUsers']);
         Route::patch('/changeRole/{user_id}', [AdminController::class, 'update']);
     }
 );
