@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GamesController;
 use App\Http\Controllers\MessagesController;
@@ -112,4 +113,17 @@ Route::group(
         );
     }
 
+);
+//Admin Routes
+Route::group(
+    [
+        'prefix' => 'admin',
+        'middleware' => ['auth:api']
+    ],
+    function () {
+        Route::get('/users', [AdminController::class, 'index']);
+        Route::get('/banned', [AdminController::class, 'isBanned']);
+        Route::patch('/banUsers/{id}', [AdminController::class, 'banUsers']);
+        Route::patch('/changeRole/{user_id}', [AdminController::class, 'update']);
+    }
 );
