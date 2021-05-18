@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     {
         //Users Seeds
         $this->call(AdminSeeder::class);
-        User::factory(9)->create();
+        User::factory(8)->create();
 
         //Games Seed
         $this->call(GameSeeder::class);
