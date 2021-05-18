@@ -49,8 +49,6 @@ class MessagesController extends Controller
         ];
 
         try {
-
-
             PartyUser::where('user_id', $userId)->where('party_id', $partyId)->get()[0]->id;
 
             Message::create($message);
