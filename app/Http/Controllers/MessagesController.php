@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\PartyUser;
 use Illuminate\Http\Request;
 
 class MessagesController extends Controller
@@ -15,8 +16,20 @@ class MessagesController extends Controller
     public function index(Request $request)
     {
         $partyId = $request->party_id;
-        $messages = Message::select('messages.*', 'parties.name as party_name', 'users.email as user_email', 'users.name as user_name')->where('party_id', $partyId)->join('parties', 'messages.party_id', 'parties.id')->join('users', 'messages.user_id', 'users.id')->get();
-        return response()->json([$messages], 200);
+        $userId = $request->user()->id;
+
+        try {
+
+            PartyUser::where('user_id', $userId)->where('party_id', $partyId)->get()[0]->id;
+
+            $messages = Message::select('messages.*', 'parties.name as party_name', 'users.email as user_email', 'users.name as user_name')->where('party_id', $partyId)->join('parties', 'messages.party_id', 'parties.id')->join('users', 'messages.user_id', 'users.id')->get();
+
+            return response()->json(['data' => $messages], 200);
+            
+        } catch (\Exception $error) {
+            
+            return response()->json(['The user does not belong to this party'], 400);
+        }
     }
 
     /**
@@ -37,9 +50,18 @@ class MessagesController extends Controller
             'user_id' => $userId
         ];
 
-        Message::create($message);
+        try {
 
-        return response()->json(['data' => $message], 201);
+            PartyUser::where('user_id', $userId)->where('party_id', $partyId)->get()[0]->id;
+
+            Message::create($message);
+
+            return response()->json(['data' => $message], 201);
+            
+        } catch (\Exception $error) {
+            
+            return response()->json(['The user does not belong to this party'], 400);
+        }
     }
 
     /**
@@ -52,9 +74,7 @@ class MessagesController extends Controller
     public function update(Request $request, $id)
     {
         $userId = $request->user()->id;
-
         $message = Message::findOrFail($id);
-
         $update = Message::where('user_id', $userId)->where('id', $id)->first();
 
         if (!$update) {
