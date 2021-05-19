@@ -9,7 +9,7 @@
    
 - [Autores](#Authors) 
 #
-:memo:
+## :memo:
 ## Introduccion
 Dada la situación sanitaria, una empresa tecnológica ha estado trabajando en remoto desde marzo de 2020.
 
