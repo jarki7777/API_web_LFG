@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /vendor
+.env
 .env.backup
 .phpunit.result.cache
 docker-compose.override.yml
@@ -12,3 +13,4 @@ yarn-error.log
 composer.phar
 /vendor/
 .vscode
+.rnd
