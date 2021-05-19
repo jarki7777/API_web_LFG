@@ -26,8 +26,8 @@ Toda esta gestión se ha realizado con **PHP + Laravel** y gestionado con una ba
 
 #
 
-:open_file_folder:
-## Estructura de Carpetas 
+
+## Estructura de Carpetas :open_file_folder:
                 ├───app
                     ├───Http
                         ├───Controllers
