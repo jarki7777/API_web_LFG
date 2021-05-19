@@ -1,5 +1,5 @@
-
-# Games Parties:  :video_game: :tada:
+## :video_game: :tada:
+# Games Parties:  
 ## Contenido: 
 - [Introduccion](#Introduccion)
 - [Base de Datos](#Base-de-Datos)
@@ -19,7 +19,7 @@ La empresa quiere dar un impulso a la manera que tienen los trabajadores de rela
 Toda esta gestión se ha realizado con **PHP + Laravel** y gestionado con una base de datos **SQL**
 #
 
-:closed_book:
+## :closed_book:
 ## Base de Datos 
 ![GamesRoom](https://user-images.githubusercontent.com/76188418/118847249-d4078080-b8cd-11eb-8af1-10269a8b7476.png)
 
@@ -42,7 +42,7 @@ Toda esta gestión se ha realizado con **PHP + Laravel** y gestionado con una ba
                 ├───routes
 #
 
-:closed_lock_with_key:
+## :closed_lock_with_key:
 ## Autenticación y Autorización 
 Los nuevos usuarios deberán registrarse para acceder a los puntos dentro de la aplicación.
 Los usuarios registrados pueden iniciar sesión guarda la información en un token que permite al usuario acceder a rutas, servicios y recursos que requieren esta llave.
@@ -51,7 +51,7 @@ Esta manera de autenticación almacena de manera cifrada el email, la password y
 'basic', solo el usuario con rol 'admin' puede accedere a rutas y servicios especificos
 #
 
-:round_pushpin:
+## :round_pushpin:
 ##  Endpoints
 Una serie de rutas dentro de la aplicación que permite acceder a cada uno de los servicios que esta ofrece. Tras optener la clave de acceso o 'token' el usuario podrá navegar por todas las funcionalidades dentro de la aplicación, excepto para registrarse o para iniciar sesión, para estas dos rutas no se requerirá de esa clave de acceso.
 
