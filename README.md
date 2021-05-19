@@ -79,5 +79,6 @@ Una serie de rutas dentro de la aplicación que permite acceder a cada uno de lo
     
     Los administradores podrán crear juegos desde la ruta https://gentle-springs-10876.herokuapp.com//api/game (introduciendo los datos del juego) y actualizarlos mediante https://gentle-springs-10876.herokuapp.com//api/game/gameID
     
-- **Users** Ruta diseñada para que los usuarios puedan actualizar sus datos, acceden mediante https://gentle-springs-10876.herokuapp.com//api/user/profile/userID, solo podrán actualizar sus datos.
+- **Users** Ruta diseñada para que los usuarios puedan actualizar sus datos, acceden mediante https://gentle-springs-10876.herokuapp.com//api/user/
+    - /profile/userID --> Permite actualizar sus propios datos
 #
