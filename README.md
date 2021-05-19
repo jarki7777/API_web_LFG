@@ -48,7 +48,7 @@ Esta manera de autenticación almacena de manera cifrada el email, la password y
 ## :round_pushpin: Endpoints
 Una serie de rutas dentro de la aplicación que permite acceder a cada uno de los servicios que esta ofrece. Tras optener la clave de acceso o 'token' el usuario podrá navegar por todas las funcionalidades dentro de la aplicación, excepto para registrarse o para iniciar sesión, para estas dos rutas no se requerirá de esa clave de acceso.
 
-- **Auth:** Rutas especificas de autenticación, todas estan rutas pasan por localhost:8000/api/auth/...
+- **Auth:** Rutas especificas de autenticación, todas estan rutas pasan por https://gentle-springs-10876.herokuapp.com/api/auth/...
     - /signup --> Permite al usuario registrar sus datos 
     - /login --> Permite al usuario acceder con sus credenciales
     - /logout --> Permite al usuario cerrar su sesión
