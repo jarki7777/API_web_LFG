@@ -1,5 +1,5 @@
-:video_game: :tada:
-# Games Parties:
+
+# Games Parties:  :video_game: :tada:
 ## Contenido: 
 - [Introduccion](#Introduccion)
 - [Base de Datos](#Base-de-Datos)
