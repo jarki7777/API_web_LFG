@@ -6,10 +6,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Message;
+use App\Models\Party;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -17,19 +20,35 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
         'email',
-        'password',
+        'name',
+        'password'
     ];
+
+    public function role()
+    {
+        return $this->hasOne(Role::class);
+    }
+
+    public function message()
+    {
+        return $this->belongsTo(Message::class, 'id', 'user_id');
+    }
+
+    public function party()
+    {
+        return $this->belongsToMany(Party::class, 'party_users');
+    }
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
+
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token', 'created_at', 'updated_at', 'email_verified_at'
     ];
 
     /**

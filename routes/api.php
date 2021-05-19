@@ -1,6 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GamesController;
+use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\PartyController;
+use App\Http\Controllers\PartyUserController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +20,110 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::group(
+    [
+        'prefix' => 'auth'
+    ],
+    function () {
+        Route::post('login', [AuthController::class, 'login']);
+        Route::post('signup', [AuthController::class, 'signUp']);
+        Route::group(
+            [
+                'middleware' => 'auth:api'
+            ],
+            function () {
+                Route::get('logout', [AuthController::class, 'logout']);
+            }
+        );
+    }
+);
+
+
+//Routes Party
+Route::group(
+    [
+        'prefix' => 'party',
+        'middleware' => ['auth:api', 'ban']
+    ],
+    function () {
+        Route::get('/', [PartyController::class, 'index']);
+        Route::post('/', [PartyController::class, 'store']);
+        Route::get('/{game_id}', [PartyController::class, 'show']);
+
+
+        Route::group(
+            [
+                'middleware' => 'scope:admin'
+            ],
+            function () {
+                Route::delete('/{id}', [PartyController::class, 'destroy']);
+            }
+        );
+    }
+);
+
+//Routes Party_User
+Route::group(
+    [
+        'prefix' => 'partyuser',
+        'middleware' => ['auth:api', 'ban']
+    ],
+    function () {
+        Route::delete('/{party_id}', [PartyUserController::class, 'destroy']);
+        Route::post('/{party_id}', [PartyUserController::class, 'store']);
+    }
+);
+
+//Routes User
+Route::middleware('auth:api')->put('/user/profile/{id}', [UserController::class, 'update']);
+
+//Routes Messages
+Route::group(
+    [
+        'prefix' => 'msg',
+        'middleware' => ['auth:api', 'ban']
+    ],
+    function () {
+        Route::post('/{party_id}', [MessagesController::class, 'store']);
+        Route::patch('/{party_id}', [MessagesController::class, 'update']);
+        Route::delete('/{party_id}', [MessagesController::class, 'destroy']);
+        Route::get('/{party_id}', [MessagesController::class, 'index']);
+    }
+);
+
+//Routes Games
+Route::group(
+    [
+        'prefix' => 'game',
+        'middleware' => ['auth:api', 'ban']
+    ],
+    function () {
+        Route::get('/', [GamesController::class, 'index']);
+        Route::get('/{id}', [GamesController::class, 'show']);
+
+        Route::group(
+            [
+                'middleware' => 'scope:admin'
+            ],
+            function () {
+                Route::post('/', [GamesController::class, 'store']);
+                Route::patch('/{id}', [GamesController::class, 'update']);
+                Route::delete('/{id}', [GamesController::class, 'destroy']);
+            }
+        );
+    }
+
+);
+//Admin Routes
+Route::group(
+    [
+        'prefix' => 'admin',
+        'middleware' => ['auth:api']
+    ],
+    function () {
+        Route::get('/users', [AdminController::class, 'index']);
+        Route::get('/banned', [AdminController::class, 'isBanned']);
+        Route::patch('/banUsers/{user_id}', [AdminController::class, 'banUsers']);
+        Route::patch('/changeRole/{user_id}', [AdminController::class, 'update']);
+    }
+);
