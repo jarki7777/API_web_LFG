@@ -48,11 +48,16 @@ Los nuevos usuarios deberán registrarse para acceder a los puntos dentro de la 
 Los usuarios registrados pueden iniciar sesión guarda la información en un token que permite al usuario acceder a rutas, servicios y recursos que requieren esta llave.
 
 Esta manera de autenticación almacena de manera cifrada el email, la password y otra información del usuario. Por defecto todos los nuevos usuarios se dan de alta con un rol
-'basic', solo el usuario con rol 'admin' puede accedere a rutas y servicios especificos
+'basic', solo el usuario con rol 'admin' puede accedere a rutas y servicios especificos.
+
+A su vez se podrán banear usuarios, los cuales solo tienen acceso al login y al logout
 #
 
 ## :round_pushpin:
 ##  Endpoints
+
+[Documentacion Ofical de Games Party](https://documenter.getpostman.com/view/14138566/TzRa5iLp)
+
 Una serie de rutas dentro de la aplicación que permite acceder a cada uno de los servicios que esta ofrece. Tras optener la clave de acceso o 'token' el usuario podrá navegar por todas las funcionalidades dentro de la aplicación, excepto para registrarse o para iniciar sesión, para estas dos rutas no se requerirá de esa clave de acceso.
 
 - **Auth:** Rutas especificas de autenticación, todas estan rutas pasan por https://gentle-springs-10876.herokuapp.com/api/auth/...
