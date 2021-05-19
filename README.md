@@ -3,7 +3,7 @@
 - [Introduccion](#Introduccion)
 - [Base de Datos](#Base-de-Datos)
 - [Estructura de Carpetas](#Estructura-de-Carpetas)
-- [Autenticación](#Autenticación-y-Autorización)
+- [Autenticacio y Autorizacion](#Autenticacion-y-Autorizacion)
 - [Endpoints](#Endpoints)
     - [Auth](#Auth)
     - [Admin](#Admin)
@@ -14,7 +14,7 @@
    
 - [Autores](#Authors) 
 #
-## Introduction
+## Introduccion
 Dada la situación sanitaria, una empresa tecnológica ha estado trabajando en remoto desde marzo de 2020.
 
 Esto ha implicado que nuestros compañeros hayan perdido el contacto humano que siempre se ha tenido, y es algo que la empresa desea cambiar.
@@ -43,7 +43,7 @@ Toda esta gestión se ha realizado con **PHP + Laravel** y gestionado con una ba
                 ├───routes
 #
 
-## :closed_lock_with_key: Autenticación y Autorización
+##  Autenticación y Autorización :closed_lock_with_key:
 Los nuevos usuarios deberán registrarse para acceder a los puntos dentro de la aplicación.
 Los usuarios registrados pueden iniciar sesión guarda la información en un token que permite al usuario acceder a rutas, servicios y recursos que requieren esta llave.
 
