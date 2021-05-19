@@ -8,7 +8,7 @@
    
 - [Autores](#Authors) 
 #
-## Introduccion
+## :memo: Introduccion
 Dada la situación sanitaria, una empresa tecnológica ha estado trabajando en remoto desde marzo de 2020.
 
 Esto ha implicado que nuestros compañeros hayan perdido el contacto humano que siempre se ha tenido, y es algo que la empresa desea cambiar.
