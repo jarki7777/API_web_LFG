@@ -48,7 +48,9 @@ Los nuevos usuarios deberán registrarse para acceder a los puntos dentro de la 
 Los usuarios registrados pueden iniciar sesión guarda la información en un token que permite al usuario acceder a rutas, servicios y recursos que requieren esta llave.
 
 Esta manera de autenticación almacena de manera cifrada el email, la password y otra información del usuario. Por defecto todos los nuevos usuarios se dan de alta con un rol
-'basic', solo el usuario con rol 'admin' puede accedere a rutas y servicios especificos
+'basic', solo el usuario con rol 'admin' puede accedere a rutas y servicios especificos.
+
+A su vez se podrán banear usuarios, los cuales solo tienen acceso al login y al logout
 #
 
 ## :round_pushpin:
