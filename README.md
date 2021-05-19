@@ -5,12 +5,6 @@
 - [Estructura de Carpetas](#Estructura-de-Carpetas)
 - [Autenticacio y Autorizacion](#Autenticacion-y-Autorizacion)
 - [Endpoints](#Endpoints)
-    - [Auth](#Auth)
-    - [Admin](#Admin)
-    - [Parites](#Parties)
-    - [Games](#Games)
-    - [Messages](#Messages)
-    - [Users](#Users)
    
 - [Autores](#Authors) 
 #
@@ -43,7 +37,7 @@ Toda esta gestión se ha realizado con **PHP + Laravel** y gestionado con una ba
                 ├───routes
 #
 
-##  Autenticación y Autorización :closed_lock_with_key:
+## :closed_lock_with_key: Autenticación y Autorización 
 Los nuevos usuarios deberán registrarse para acceder a los puntos dentro de la aplicación.
 Los usuarios registrados pueden iniciar sesión guarda la información en un token que permite al usuario acceder a rutas, servicios y recursos que requieren esta llave.
 
@@ -58,4 +52,30 @@ Una serie de rutas dentro de la aplicación que permite acceder a cada uno de lo
     - /signup --> Permite al usuario registrar sus datos 
     - /login --> Permite al usuario acceder con sus credenciales
     - /logout --> Permite al usuario cerrar su sesión
+    
+- **Admin** Rutas diseñadas para los **administradores**, pasan por localhost:8000/api/admin/...
+    - /users --> Permite ver a los administradores ver un listado de todos los usuarios
+    - /banned --> Permite ver todos los usuarios que están baneados 
+    - /banUser/userID --> Permite a los administradores banear o desbanear a un usuario
+    - /changeRole/userID --> Permite a los administradores camnbiar el rol de otros usuarios u otros administradores
+
+- **Parties** Rutas para interactuar con los grupos de juego, pasan por localhost:8000/api/party...
+    - / --> (GET) Muestra un listado de todos los grupos que hay disponibles 
+    - / --> (POST) Permite crear una sala con un nombre y el juego relacionado
+    - /gameID --> Muestra los grupos de un juego concreto
+    - /partyID --> Permite borrar un grupo, esta ruta solo podrán acceder los administradores
+    
+    Si los usuarios quieren unirse o salirse de un grupo la ruta será localhost:8000/api/partyuser/...
+    - /partyID --> Permite a los usuarios entrar o salir de un grupo
+
+- **Messages** Rutas diseñadas para interactuar con los mensajes de la app, acceden mediante localhost:8000/api/msg...
+    - /partyID --> Muestra un listado de todos los mensajes dentro de un grupo
+    - /partyID --> Permite al usuario escribir un mensaje dentro de un grupo al que pertenece
+    - /messageID --> Permite al usuario borrar o actualizar sus propios mensajes
+
+- **Games** Rutas diseñadas para interacturar con el listado de videojuegos disponibles, acceden por localhost:8000/api/game...
+    - / --> Muestra un listado general de todos los videojuegos disponibles
+    - /gameID --> Muestra los datos de un videojuego en concreto
+    
+    Los administradores podrán crear juegos desde la ruta localhost:8000/api/game (introduciendo los datos del juego) y actualizarlos mediante localhost:8000/api/game/gameID
 #
