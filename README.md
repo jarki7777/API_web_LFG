@@ -1,9 +1,8 @@
 ## :video_game: :tada:
 # Games Parties: 
-![GitHub issues](https://img.shields.io/github/issues/jarki7777/API_web_LFG)
-![GitHub forks](https://img.shields.io/github/forks/jarki7777/API_web_LFG)
-![GitHub stars](https://img.shields.io/github/stars/jarki7777/API_web_LFG)
-![GitHub license](https://img.shields.io/github/license/jarki7777/API_web_LFG)
+![php](https://img.shields.io/badge/PHP-^7.3|^8.0-blue)
+![laravel](https://img.shields.io/badge/Laravel-4.2.5-blue)
+![passport](https://img.shields.io/badge/Passport-%5E10.1-blue)
 ## Contenido: 
 - [Introduccion](#Introduccion)
 - [Base de Datos](#Base-de-Datos)
