@@ -1,5 +1,6 @@
 ## :video_game: :tada:
 # Games Parties:  
+![PHP](https://img.shields.io/packagist/php-v/jarki7777/API_web_LFG)
 ## Contenido: 
 - [Introduccion](#Introduccion)
 - [Base de Datos](#Base-de-Datos)
