@@ -42,7 +42,15 @@ class PartyUserController extends Controller
     {
         $idUser = $request->user()->id;
         $idParty = $request->party_id;
-        $id = PartyUser::where('user_id', $idUser)->where('party_id', $idParty)->first()->delete();
+        $data = PartyUser::where('user_id', $idUser)->where('party_id', $idParty)->first();
+
+        if (!$data) {
+            return response()->json(['message' => 'The user no longer belongs to the group'], 400);
+        }
+
+        PartyUser::destroy([
+            'id' => $data->id
+        ]);
 
         return response()->json(['message' => 'You have given up the party'], 200);
     }
