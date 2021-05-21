@@ -118,7 +118,7 @@ Route::group(
 Route::group(
     [
         'prefix' => 'admin',
-        'middleware' => ['auth:api']
+        'middleware' => ['auth:api', 'scope:admin']
     ],
     function () {
         Route::get('/users', [AdminController::class, 'index']);
